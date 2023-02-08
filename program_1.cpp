@@ -1,5 +1,5 @@
 /*
-    Author: Daeshaun Morrison
+    Author: Daeshaun Morrison & Adam Stefan
     Date: 
     Instructor: Professor Silverya
     Description: Work with a partner to write a program in C that prompts the user for a filename. It then opens the file, reads its contents, spits out a table of letter frequencies, then closes the file.
@@ -32,14 +32,19 @@ void freqCount() {
 	// Use a while loop together, read the file line by line
 	while (getline (MyReadFile, eachLine)) {
 		string eachLineStr = eachLine;
+		eachLineStr.trim();
 
 		// cout << eachLineStr; 
 		// Add 1 for every sentence
 		numSentences += 1;
-		for (int x : arr) {
-			cout<<x<<" ";
+		for (char letter : eachLineStr) {
+			// cout<<letter<<" ";
+			alph = int(letter);
+			if ( 65 < ascii < 97 ){
+				
+			}
+			
 		}
-		
 
 	}
 
