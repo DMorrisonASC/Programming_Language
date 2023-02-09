@@ -10,6 +10,4 @@ class Point {
 		void setX(int xNew);
 		void setY(int yNew);
 		double dis(Point, Point);
-	
-	
 };
