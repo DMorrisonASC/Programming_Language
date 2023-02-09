@@ -37,7 +37,7 @@ double Point::dis(Point a, Point b) {
 	int abso_Ya = abs(a.getY());
 	int abso_Yb = abs(b.getY());
 	// Calculate distance between two points
-	int distance = sqrt( pow(abso_Xb - abso_Xa, 2) + pow(abso_Yb - abso_Ya, 2) );
+	double distance = sqrt( pow(abso_Xb - abso_Xa, 2) + pow(abso_Yb - abso_Ya, 2) );
 	
 	return distance;
 	
