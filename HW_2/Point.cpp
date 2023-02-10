@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cmath>
 
+// One way of creating a constructer
 /* Point::Point(int xVal, int yVal):x(xVal), y(yVal) {
 	x = xVal;
 	y = yVal;
@@ -11,6 +12,11 @@
 Point::Point(int xVal, int yVal) {
 	x = xVal;
 	y = yVal;
+}
+
+Point::Point() {
+	x = 0;
+	y = 0;
 }
 
 int Point::getX() const{
@@ -29,6 +35,11 @@ void Point::setY(int yNew) {
 	y = yNew;
 }
 
+// Calculate the distance between two points.
+// We can obtain the mathematical distance
+// definition from the Euclidean 
+// distance formula for a two-dimensional plane:
+// d=√((x2 – x1)² + (y2 – y1)²)
 double Point::dis(Point a, Point b) {
 	// int x = a.getX() + getX();
 	int abso_Xa = abs(a.getX());
@@ -40,5 +51,20 @@ double Point::dis(Point a, Point b) {
 	double distance = sqrt( pow(abso_Xb - abso_Xa, 2) + pow(abso_Yb - abso_Ya, 2) );
 	
 	return distance;
+}
+
+bool Point::operator==(const Point & other) const {
+	return (this -> getX() == other.getX() && this->getY() == other.getY());	
+}
+
+// Only use if 
+const Point Point::operator+(const Point & other) const {
+	Point result;
+	result.setX(x + other.getX());
+	result.setY(y + other.getY());
+	// Return the values of the object
+	return result;
 	
 }
+
+// use -> with points 
