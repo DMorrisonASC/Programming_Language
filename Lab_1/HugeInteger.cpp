@@ -1,6 +1,6 @@
 #include "HugeInteger.h"
-#include<vector>
-#include<string>
+#include <vector>
+// #include <string>
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -39,10 +39,9 @@ using namespace std;
 	}
 	
 	bool HugeInteger::operator == (const HugeInteger & rightSide) {
-		
-		// if (this->data->size() != rightSide.data->size()) {
-			// return false;
-		// }
+		if (this->data->size() != rightSide.data->size()) {
+			return false;
+		}
 		
 		for (int i = 0; i < this->data->size(); i++)
 		{
@@ -53,22 +52,46 @@ using namespace std;
 		return true;
 	}
 	
-	const operator + (const HugeInteger & rightSide) {
-		int addedNum = 0;
-		
-		// this.data +
-		
-	}
+	// const HugeInteger HugeInteger::operator + (const HugeInteger & rightSide) {
+		// long calculation = atoi(rightSide.toString()) + atoi(toString());
+		// string output = to_string(calculation);
+		// return HugeInteger(output);	
+	// }
+
 	
 	bool HugeInteger::operator > (const HugeInteger & rightSide) {
-		if (this->data->size() > rightSide.data->size()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		// if (this->data->size() > rightSide.data->size()) {
+			// return true;
+		// }
+		// else {
+			// return false;
+		// }
+		// int leftsideNum = atoi(this->data.toString());
+		// int rightsideNum = atoi(rightSide.toString());
+		
+		
+		// int biggestSize = 0;
+		// if (this->size() > rightSide.size()) {
+			// size = this->size();
+		// }
+		// else if (this->size() < rightSide.size(){
+			// size = rightSide.size();
+		// }
+		
+		// else {
+			// size = this->size();
+		// }
+		
+		// if (leftsideNum > rightsideNum) {
+			// return true;
+		// } 
+		
+		// else {
+		// return false;
+		// }
 
 	}
+	
 	bool HugeInteger::isZero() const {
 		// Note: the auto keyword is used to automatically identify the type of elements in range-expression
 		for (auto i = data->begin(); i < data->end(); i++) {
@@ -77,6 +100,7 @@ using namespace std;
 		}
 		return true;
 	}
+	
 	string HugeInteger::toString() const {
 		// string finalString = "";
 		
@@ -91,6 +115,8 @@ using namespace std;
 		  numberString << *i;
 		}
 		std::string finalString = numberString.str();
+		
+		return finalString;
 	}
 	
 	// destructor for methods that use heaps and pointers;
