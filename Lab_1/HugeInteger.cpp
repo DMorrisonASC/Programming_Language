@@ -59,37 +59,28 @@ using namespace std;
 	// }
 
 	
-	bool HugeInteger::operator > (const HugeInteger & rightSide) {
-		// if (this->data->size() > rightSide.data->size()) {
-			// return true;
-		// }
-		// else {
-			// return false;
-		// }
-		// int leftsideNum = atoi(this->data.toString());
-		// int rightsideNum = atoi(rightSide.toString());
+	bool HugeInteger::operator > (const HugeInteger & rightSide) {		
 		
+		int biggestSize = 0;
+		if ( this->data->size() > rightSide.data->size() ) {
+			biggestSize = this->data->size();
+		}
+		else if ( this->data->size() < rightSide.data->size() ){
+			biggestSize = rightSide.data->size();
+		}
 		
-		// int biggestSize = 0;
-		// if (this->size() > rightSide.size()) {
-			// size = this->size();
-		// }
-		// else if (this->size() < rightSide.size(){
-			// size = rightSide.size();
-		// }
+		else {
+			biggestSize = this->data->size();
+		}
 		
-		// else {
-			// size = this->size();
-		// }
+		for (int i = biggestSize - 1; i >= 0; i--)
+		{
+			if (i < rightSide.data->size() && i < this->data->size())
+				if (this->data->at(i) > rightSide.data->at(i))
+					return true;
+		}
+		return false;
 		
-		// if (leftsideNum > rightsideNum) {
-			// return true;
-		// } 
-		
-		// else {
-		// return false;
-		// }
-
 	}
 	
 	bool HugeInteger::isZero() const {
