@@ -60,10 +60,10 @@ int Lexer::lookup(char ch)
       addChar(); 
       nextToken=RIGHT_CURL; 
       break;
-	case '\'': 
+	case '"': 
 		addChar(); 
-		nextToken=SING_QUOTE; 
-		break;
+		nextToken=DOUB_QUOTE; 
+		break; // Strings
 	case '.': 
 		addChar(); 
 		nextToken=FLOAT_DOT; 
@@ -121,14 +121,37 @@ int Lexer::lex()
 
   switch( charClass )
   {
-    case LETTER: 
+	case DOUB_QUOTE: 
         addChar(); 
         getChar(); 
         while( charClass == LETTER || charClass == DIGIT ){ 
           addChar(); 
           getChar(); 
+        }         
+		while( charClass == UNKNOWN){ 
+          addChar(); 
+          getChar(); 
         } 
-        nextToken=IDENT; 
+        nextToken=DOUB_QUOTE; 
+        break; // Strings
+    case LETTER: 
+        addChar(); 
+        getChar(); 
+        while( charClass == LETTER || charClass == DIGIT){ 
+          addChar(); 
+          getChar(); 
+        } 
+		
+		isReserveWord = checkIfReserve(lexeme);
+		
+		if (isReserveWord == true) {
+			nextToken=KEY_WORDS; 	
+		}
+		else {
+			nextToken=IDENT; 
+		}
+		
+		// nextToken=IDENT; 
         break; // identifiers
     case DIGIT: 
         addChar(); 
@@ -144,37 +167,27 @@ int Lexer::lex()
         lookup(nextChar); 
         getChar(); 
         break; // Other characters
+		
     case EOF: 
         nextToken=EOF; 
         lexeme = "EOF";
         break;
   }
-  // Switch for added tokens
-    // switch( charClass2 )
-  // {
-    // case LEFT_CURL: 
-        // addChar(); 
-        // nextToken=IDENT; 
-        // break; // opening curly brackets
-    // case DIGIT: 
-        // addChar(); 
-        // getChar(); 
-        // while( charClass2 == DIGIT ){ 
-          // addChar(); 
-          // getChar(); 
-        // } 
-        // nextToken=INT_LIT; 
-        // break; // integers
-    // case UNKNOWN: 
-        // lookup(nextChar); 
-        // getChar(); 
-        // break; // Other characters
-    // case EOF: 
-        // nextToken=EOF; 
-        // lexeme = "EOF";
-        // break;
-  // }
 
   return nextToken;
 }
 
+bool Lexer::checkIfReserve(const string word) {
+	
+	bool isReserve = false;
+	string reserveList[11] = {"if", "else", "for", "do", "while", "switch", "case", "default", "break", "void", "return"};
+	int getReserveList = sizeof(reserveList) / sizeof(string);
+	
+	for (int i = 0; i < getReserveList; i++) {
+		if (word.compare(reserveList[i])) {
+			return true;
+		}
+	}
+	
+	return false;
+}
