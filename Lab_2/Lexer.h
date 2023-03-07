@@ -26,9 +26,9 @@ using std::string;
 #define RIGHT_PAREN 26
 #define LEFT_CURL 27
 #define RIGHT_CURL 28
-#define SING_QUOTE 40
+#define DOUB_QUOTE 40
 #define FLOAT_DOT 41
-#define IF_LOOPS 50
+#define KEY_WORDS 50
 #define COMMA 60
 #define SEMI_COLON 100
 
@@ -43,6 +43,7 @@ private:
   int nextToken;
   int charClass;
   char nextChar;
+  bool isReserveWord;
   ifstream inputStream;
 
 public:
@@ -52,6 +53,7 @@ public:
   int lex();
   int getNextToken() const;
   string getLexeme() const;
+  bool checkIfReserve(const string word);
 
 private:
   void getNonBlank();
