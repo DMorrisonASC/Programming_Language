@@ -1,0 +1,6 @@
+Cat
+Dog
+Telephone
+Burger
+Eggplant
+Computer
