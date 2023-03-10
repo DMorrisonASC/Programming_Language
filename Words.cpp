@@ -62,10 +62,13 @@ using namespace std;
 		
 		
 		
-		// while (KeepGoing == true) {
-			// for 
+		while (KeepGoing == true) {
+			cout << "Guess a letter: ";
+			char input;
+			cin>>input;
+			cout << input;
 		
-		// }
+		}
 		
 	}
 	
