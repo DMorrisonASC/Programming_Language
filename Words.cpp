@@ -21,10 +21,10 @@ using namespace std;
 	
 	Words::Words(){
 		list = new vector<string>();
-		list -> push_back("Worm");	
-		list -> push_back("Dog");	
-		list -> push_back("Eagle");	
-		list -> push_back("Elephant");	
+		list -> push_back("worm");	
+		list -> push_back("dog");	
+		list -> push_back("eagle");	
+		list -> push_back("elephant");	
 	}
 	
 	/*
@@ -51,35 +51,44 @@ using namespace std;
 	*/
 	
 	void Words::playGame() {
+		int guesses = 7;
 		bool KeepGoing = true;
 		int randPick = (rand() % list->size());
-		string randWord = list->at(randPick);
+		string randWord = list->at(0);
+		string incompleteWord = "";
 		
 		
 		for (char letter : randWord) {
-			cout << "_ " << randPick;
-			
+			cout << "_ ";
+			incompleteWord.push_back('_');
 		}
-		
-		
 		
 		while (KeepGoing == true) {
 			cout << "Guess a letter: ";
 			char input;
 			cin>>input;
-			cout << input;
 			
-			if (randWord.find(input)) {
-				cout << "\nfound ";
+			if (randWord.find(input) != std::string::npos) {
+				for (int i = 0; i < randWord.length(); i++ ) {
+					if (randWord.at(i) == input) {
+						incompleteWord = editWord(incompleteWord, i, input);
+					}
+				}
+				
+				cout << incompleteWord;
 			}
-			else
-				cout << "\nnot found ";
+			else {
+				cout << "\"" << input << "\"" << " is not in the word";
+				guesses = guesses - 1;
+				cout << "Guesses ramaining: " << guesses << "\n";
+			}	
 		
 		}
 		
+		
 	}
-	/*
-	string Words::editWord() {
+	
+	string Words::editWord(string s, int index, char new_char) {
 	   // replace new_char with the existing character at s[index]
 	   if( index >= 0 && index < s.length() ) {
 		  s[ index ] = new_char;
@@ -88,7 +97,7 @@ using namespace std;
 		  return s;
 	   }
 	}
-	*/
+	
 	// destructor for methods that use heaps and pointers;
 	Words::~Words() {
 		delete this->list;
