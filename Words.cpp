@@ -55,6 +55,7 @@ using namespace std;
 		int randPick = (rand() % list->size());
 		string randWord = list->at(randPick);
 		
+		
 		for (char letter : randWord) {
 			cout << "_ " << randPick;
 			
@@ -67,11 +68,27 @@ using namespace std;
 			char input;
 			cin>>input;
 			cout << input;
+			
+			if (randWord.find(input)) {
+				cout << "\nfound ";
+			}
+			else
+				cout << "\nnot found ";
 		
 		}
 		
 	}
-	
+	/*
+	string Words::editWord() {
+	   // replace new_char with the existing character at s[index]
+	   if( index >= 0 && index < s.length() ) {
+		  s[ index ] = new_char;
+		  return s;
+	   } else {
+		  return s;
+	   }
+	}
+	*/
 	// destructor for methods that use heaps and pointers;
 	Words::~Words() {
 		delete this->list;
