@@ -30,6 +30,7 @@ using std::string;
 #define FLOAT_DOT 41
 #define KEY_WORDS 50
 #define COMMA 60
+#define SPACE 99
 #define SEMI_COLON 100
 
 
@@ -44,6 +45,7 @@ private:
   int charClass;
   char nextChar;
   bool isReserveWord;
+  bool isFloat;
   ifstream inputStream;
 
 public:
@@ -54,6 +56,7 @@ public:
   int getNextToken() const;
   string getLexeme() const;
   bool checkIfReserve(const string word);
+  bool checkIfFloat(const string floatingNum);
 
 private:
   void getNonBlank();
