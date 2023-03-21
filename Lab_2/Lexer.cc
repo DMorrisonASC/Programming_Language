@@ -1,6 +1,7 @@
 #include <cstdlib>
+#include<iostream>
 #include "Lexer.h"
-
+using namespace std;
 Lexer::Lexer( const string & fileName ): nextToken(EOF), charClass(UNKNOWN), nextChar(' ') {
   inputStream.open( fileName.c_str(), ifstream::in ); 
 }
@@ -100,7 +101,9 @@ void Lexer::getChar()
   if( inputStream.good() ) {
     if( isalpha(nextChar)) charClass=LETTER;
     else if( isdigit(nextChar) ) charClass=DIGIT;
-    else charClass=UNKNOWN; 
+    else if( nextChar == '"') charClass = DOUB_QUOTE;
+
+	else charClass=UNKNOWN; 
   } else {
     charClass = EOF;
   }
@@ -124,19 +127,22 @@ int Lexer::lex()
 	case DOUB_QUOTE: 
         addChar(); 
         getChar(); 
+		
         while( charClass == LETTER || charClass == DIGIT ){ 
           addChar(); 
           getChar(); 
         }         
-		while( charClass == UNKNOWN){ 
-          addChar(); 
-          getChar(); 
-        } 
+		// while( charClass == UNKNOWN){ 
+          // addChar(); 
+          // getChar(); 
+        // } 
         nextToken=DOUB_QUOTE; 
-        break; // Strings
+        break;
+		
     case LETTER: 
         addChar(); 
         getChar(); 
+		
         while( charClass == LETTER || charClass == DIGIT){ 
           addChar(); 
           getChar(); 
@@ -147,12 +153,16 @@ int Lexer::lex()
 		if (isReserveWord == true) {
 			nextToken=KEY_WORDS; 	
 		}
+		
 		else {
 			nextToken=IDENT; 
 		}
 		
+		isReserveWord = false;
+		
 		// nextToken=IDENT; 
         break; // identifiers
+		
     case DIGIT: 
         addChar(); 
         getChar(); 
@@ -184,10 +194,8 @@ bool Lexer::checkIfReserve(const string word) {
 	int getReserveList = sizeof(reserveList) / sizeof(string);
 	
 	for (int i = 0; i < getReserveList; i++) {
-		if (word.compare(reserveList[i])) {
-			return true;
+		if (word.compare(reserveList[i]) == true) {
+			return true;	
 		}
 	}
-	
-	return false;
 }
