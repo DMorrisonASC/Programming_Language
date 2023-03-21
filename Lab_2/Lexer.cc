@@ -102,7 +102,8 @@ void Lexer::getChar()
     if( isalpha(nextChar)) charClass=LETTER;
     else if( isdigit(nextChar) ) charClass=DIGIT;
     else if( nextChar == '"') charClass = DOUB_QUOTE;
-    else if( nextChar == ' ') charClass = SPACE;
+	// else if (nextChar == '.') charClass = FLOAT_DOT;
+    // else if( nextChar == ' ') charClass = SPACE;
 	else charClass=UNKNOWN; 
   } else {
     charClass = EOF;
@@ -157,17 +158,23 @@ int Lexer::lex()
 		
 		isReserveWord = false;
 		
-		// nextToken=IDENT; 
         break; // identifiers
 		
     case DIGIT: 
-        addChar(); 
-        getChar(); 
-        while( charClass == DIGIT ){ 
+ 
+        do { 
           addChar(); 
           getChar(); 
-        } 
-        nextToken=INT_LIT; 
+        } while( charClass == DIGIT || nextChar == '.');
+		
+		isFloat = checkIfFloat(lexeme);
+		
+		if (isFloat == true) {
+			nextToken=FLOAT_DOT;	
+		}
+		else {
+			nextToken=INT_LIT; 
+		}
         break; // integers
 		
     case UNKNOWN: 
@@ -195,4 +202,14 @@ bool Lexer::checkIfReserve(const string word) {
 			return true;	
 		}
 	}
+	return false;
+}
+
+bool Lexer::checkIfFloat(const string floatingNum) {
+	for (char element : floatingNum) {
+		if ( element == '.') {
+			return true;
+		}
+	}
+	return false;
 }
