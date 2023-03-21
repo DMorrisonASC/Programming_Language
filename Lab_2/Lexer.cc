@@ -102,7 +102,7 @@ void Lexer::getChar()
     if( isalpha(nextChar)) charClass=LETTER;
     else if( isdigit(nextChar) ) charClass=DIGIT;
     else if( nextChar == '"') charClass = DOUB_QUOTE;
-
+    else if( nextChar == ' ') charClass = SPACE;
 	else charClass=UNKNOWN; 
   } else {
     charClass = EOF;
@@ -125,17 +125,14 @@ int Lexer::lex()
   switch( charClass )
   {
 	case DOUB_QUOTE: 
-        addChar(); 
-        getChar(); 
+		do {
+			addChar();
+			getChar();
+		} 
+		while (charClass != DOUB_QUOTE);
+		addChar();
+		getChar();
 		
-        while( charClass == LETTER || charClass == DIGIT ){ 
-          addChar(); 
-          getChar(); 
-        }         
-		// while( charClass == UNKNOWN){ 
-          // addChar(); 
-          // getChar(); 
-        // } 
         nextToken=DOUB_QUOTE; 
         break;
 		
@@ -190,11 +187,11 @@ int Lexer::lex()
 bool Lexer::checkIfReserve(const string word) {
 	
 	bool isReserve = false;
-	string reserveList[11] = {"if", "else", "for", "do", "while", "switch", "case", "default", "break", "void", "return"};
+	string reserveList[11] = {"if", "else", "do", "for", "while", "switch", "case", "default", "break", "void", "return"};
 	int getReserveList = sizeof(reserveList) / sizeof(string);
 	
 	for (int i = 0; i < getReserveList; i++) {
-		if (word.compare(reserveList[i]) == true) {
+		if (word == reserveList[i] ) {
 			return true;	
 		}
 	}
