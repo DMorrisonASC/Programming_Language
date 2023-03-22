@@ -1,3 +1,11 @@
+/*
+    Author: Daeshaun Morrison, Muhlenberg College class of 2024(daeshaunkmorrison@gmail.com)
+    Date: 3/21/2023
+    Instructor: Professor Silveyra
+    Description: Lexical analyzer
+    Errors: None
+ */
+
 #include <cstdlib>
 #include<iostream>
 #include "Lexer.h"
@@ -102,8 +110,6 @@ void Lexer::getChar()
     if( isalpha(nextChar)) charClass=LETTER;
     else if( isdigit(nextChar) ) charClass=DIGIT;
     else if( nextChar == '"') charClass = DOUB_QUOTE;
-	// else if (nextChar == '.') charClass = FLOAT_DOT;
-    // else if( nextChar == ' ') charClass = SPACE;
 	else charClass=UNKNOWN; 
   } else {
     charClass = EOF;
@@ -126,12 +132,13 @@ int Lexer::lex()
   switch( charClass )
   {
 	case DOUB_QUOTE: 
-		do {
+		do { // Add double quote('"') to `lexeme` and keep add chars until it reaches another one.
 			addChar();
 			getChar();
 		} 
 		while (charClass != DOUB_QUOTE);
-		addChar();
+		
+		addChar(); // Add the double quote
 		getChar();
 		
         nextToken=DOUB_QUOTE; 
@@ -145,8 +152,10 @@ int Lexer::lex()
           addChar(); 
           getChar(); 
         } 
-		
-		isReserveWord = checkIfReserve(lexeme);
+		// Check if the word is a reserve word in C++
+		// If it is, the token is `KEY_WORDS`
+		// If not, the token is `IDENT`
+		isReserveWord = checkIfReserve(lexeme); 
 		
 		if (isReserveWord == true) {
 			nextToken=KEY_WORDS; 	
@@ -166,7 +175,9 @@ int Lexer::lex()
           addChar(); 
           getChar(); 
         } while( charClass == DIGIT || nextChar == '.');
-		
+		// Check if the number is a floating decimal in C++
+		// If it is, the token is `FLOAT_DOT`
+		// If not, the token is `INT_LIT`
 		isFloat = checkIfFloat(lexeme);
 		
 		if (isFloat == true) {
@@ -191,6 +202,7 @@ int Lexer::lex()
   return nextToken;
 }
 
+// If the word passed is a reserve word, return true. If not, return false
 bool Lexer::checkIfReserve(const string word) {
 	
 	bool isReserve = false;
@@ -204,7 +216,7 @@ bool Lexer::checkIfReserve(const string word) {
 	}
 	return false;
 }
-
+// If the string of numbers passed is a float, return true. If not, return false
 bool Lexer::checkIfFloat(const string floatingNum) {
 	for (char element : floatingNum) {
 		if ( element == '.') {
