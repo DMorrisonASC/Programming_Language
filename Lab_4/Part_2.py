@@ -17,7 +17,6 @@ def startSearching(allNames_Dict):
         # Get user input
         choice = input("Enter a choice: 1) Search 2) Popularity over time 3) Top ten: 4) Quit\n")
 
-        # Check if the user entered "a"
         if choice == "1":
             substring = input("Enter a enter name to search for: \n")
             matching_names = searchNames(substring, allNames_Dict)
@@ -29,8 +28,6 @@ def startSearching(allNames_Dict):
             else:
                 print("No names found. Try again!".format(substring))
 
-
-        # Check if the user entered "b"
         elif choice == "2":
             string = input("Enter a enter name to find yearly rankings: \n")
             matching_name = findRankings(string, allNames_Dict)
@@ -48,13 +45,18 @@ def startSearching(allNames_Dict):
         # Check if the user entered "c"
         elif choice == "3":
             string = input("Enter year: \n")
-            sortedNameList = sortTopTen(string, allNames_Dict)
 
-            print("Most popular names for {}:".format(string))
-            print("----------------------------------------------------------------")
-            for index in range(0,19):
-                print(sortedNameList[index][0], end=', ')
-                print(sortedNameList[index+1][0])
+            if (int(string) not in range(1900, 2010, 10)):
+                print("Invalid year choice. Use years from 1900-2010 in 10 year increments")
+            
+            else:
+                sortedNameList = sortTopTen(string, allNames_Dict)
+
+                print("Most popular names for {}:".format(string))
+                print("----------------------------------------------------------------")
+                for index in range(0,19):
+                    print(sortedNameList[index][0], end=', ')
+                    print(sortedNameList[index+1][0])
 
         # Check if the user entered "q"
         elif choice == "4":
