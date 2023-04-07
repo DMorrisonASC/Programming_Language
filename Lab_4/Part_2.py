@@ -47,8 +47,14 @@ def startSearching(allNames_Dict):
 
         # Check if the user entered "c"
         elif choice == "3":
-            print("Enter year:\n")
-            sortTopTen("2000", allNames_Dict)
+            string = input("Enter year: \n")
+            sortedNameList = sortTopTen(string, allNames_Dict)
+
+            print("Most popular names for {}:".format(string))
+            print("----------------------------------------------------------------")
+            for index in range(0,19):
+                print(sortedNameList[index][0], end=', ')
+                print(sortedNameList[index+1][0])
 
         # Check if the user entered "q"
         elif choice == "4":
@@ -124,7 +130,6 @@ def spaceFiller(my_string):
     return(new_string)
 
 def sortTopTen(year, nameList):
-    sortedNames = []
     topTenArray = []
     index = 1
 
@@ -164,8 +169,10 @@ def sortTopTen(year, nameList):
             if (eachArray[index] != '0'):
                 topTenArray.append([eachArray[0], eachArray[index]])
     
-    topTenArray.sort(key=sortSecond, reverse=True)
-    print(topTenArray)
+    # topTenArray.sort(key=sortSecond, reverse=True)
+    topTenArray.sort(key=sortSecond)
+    # print(topTenArray)
+    return topTenArray
 
 
 
