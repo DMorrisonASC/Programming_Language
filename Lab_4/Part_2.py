@@ -27,20 +27,32 @@ def startSearching(allNames_Dict):
                 for name in matching_names:
                     print(name)
             else:
-                print("No names found containing '{}' as a substring.".format(substring))
+                print("No names found. Try again!".format(substring))
 
 
         # Check if the user entered "b"
-        elif choice == "b":
-            print("You chose option B")
+        elif choice == "2":
+            string = input("Enter a enter name to find yearly rankings: \n")
+            matching_name = findRankings(string, allNames_Dict)
+
+            if matching_name:
+                print("'{}'s yearly ranking from 1900-2010:\n ".format(string))
+                print("1900 1910 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010")
+                print("----------------------------------------------------------------")
+                for i in range(1, len(matching_name)):
+                    whitespace = ' '
+                    print(matching_name[i], end='  ')
+                    # print(whitespace * (4 % len(matching_name[i])), end='')
+            else:
+                print("No names found containing '{}' as a substring.\n".format(string))
 
         # Check if the user entered "c"
-        elif choice == "c":
+        elif choice == "3":
             print("You chose option C")
 
         # Check if the user entered "q"
-        elif choice == "q":
-            print("Quitting...")
+        elif choice == "4":
+            print("Ending program...")
             break
 
         # If the user entered an invalid choice
@@ -59,11 +71,13 @@ def searchNames(substring, name_dict):
 
 def findBiggestYear(nameList):
     biggestNum_index = 1  # Skip first value(the name)
+    year = 0
+
     # Find index of biggest number
     for i in range(2, len(nameList)):
         if nameList[i] > nameList[biggestNum_index]:
             biggestNum_index = i
-    year = 0
+    # State year based on the largest index
     if (biggestNum_index == 1):
         year = "1900"
     elif (biggestNum_index == 2):
@@ -90,6 +104,13 @@ def findBiggestYear(nameList):
         year = "2010"
     
     return nameList[0], year
+
+def findRankings(string, name_dict):
+    for key in name_dict:
+        eachList = name_dict[key]
+
+        if string.lower() == eachList[0].lower():
+            return eachList
 
 
 if __name__ == '__main__':
