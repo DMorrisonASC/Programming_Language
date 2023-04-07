@@ -118,7 +118,7 @@ def findRankings(string, name_dict):
 
         if string.lower() == eachList[0].lower():
             return eachList
-
+# Adds whitepace to string with char length of 4
 def spaceFiller(my_string):
     desired_length = 4
 
@@ -131,6 +131,7 @@ def spaceFiller(my_string):
 
     return(new_string)
 
+# Sort list of names and return them in ascending order
 def sortTopTen(year, nameList):
     topTenArray = []
     index = 1
@@ -160,7 +161,7 @@ def sortTopTen(year, nameList):
         index = 11
     elif (year == "2010"):
         index = 12
-
+    # Get value of 2nd index of an array
     def sortSecond(val):
         return val[1]
 
@@ -170,14 +171,9 @@ def sortTopTen(year, nameList):
         if (eachArray[0] != '4513'):
             if (eachArray[index] != '0'):
                 topTenArray.append([eachArray[0], eachArray[index]])
-    
-    # topTenArray.sort(key=sortSecond, reverse=True)
+
     topTenArray.sort(key=sortSecond)
-    # print(topTenArray)
     return topTenArray
-
-
-
 
 if __name__ == '__main__':
     main()
