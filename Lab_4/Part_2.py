@@ -40,9 +40,8 @@ def startSearching(allNames_Dict):
                 print("1900 1910 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010")
                 print("----------------------------------------------------------------")
                 for i in range(1, len(matching_name)):
-                    whitespace = ' '
-                    print(matching_name[i], end='  ')
-                    # print(whitespace * (4 % len(matching_name[i])), end='')
+                    print(spaceFiller(matching_name[i]), end=' ')
+                print()
             else:
                 print("No names found containing '{}' as a substring.\n".format(string))
 
@@ -111,6 +110,18 @@ def findRankings(string, name_dict):
 
         if string.lower() == eachList[0].lower():
             return eachList
+
+def spaceFiller(my_string):
+    desired_length = 4
+
+    num_spaces = desired_length - len(my_string)
+    if num_spaces > 0:
+        whitespace = " " * num_spaces
+        new_string = my_string + whitespace
+    else:
+        new_string = my_string
+
+    return(new_string)
 
 
 if __name__ == '__main__':
