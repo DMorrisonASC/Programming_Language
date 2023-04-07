@@ -47,7 +47,8 @@ def startSearching(allNames_Dict):
 
         # Check if the user entered "c"
         elif choice == "3":
-            print("You chose option C")
+            print("Enter year:\n")
+            sortTopTen("2000", allNames_Dict)
 
         # Check if the user entered "q"
         elif choice == "4":
@@ -62,7 +63,6 @@ def searchNames(substring, name_dict):
     matching_names = []
     for key in name_dict:
         eachList = name_dict[key]
-        # print(eachName)
         if substring.lower() in eachList[0].lower():
             name_and_year = findBiggestYear(eachList)
             matching_names.append(name_and_year)
@@ -76,7 +76,7 @@ def findBiggestYear(nameList):
     for i in range(2, len(nameList)):
         if nameList[i] > nameList[biggestNum_index]:
             biggestNum_index = i
-    # State year based on the largest index
+    # Set year based on the largest index
     if (biggestNum_index == 1):
         year = "1900"
     elif (biggestNum_index == 2):
@@ -122,6 +122,52 @@ def spaceFiller(my_string):
         new_string = my_string
 
     return(new_string)
+
+def sortTopTen(year, nameList):
+    sortedNames = []
+    topTenArray = []
+    index = 1
+
+    # Set year based on the largest index
+    if (year == "1900"):
+        index = 1
+    elif (year == "1910"):
+        index = 2
+    elif (year == "1920"):
+        index = 3
+    elif (year == "1930"):
+        index = 4
+    elif (year == "1940"):
+        index = 5
+    elif (year == "1950"):
+        index = 6
+    elif (year == "1960"):
+        index = 7
+    elif (year == "1970"):
+        index = 8
+    elif (year == "1980"):
+        index = 9
+    elif (year == "1990"):
+        index = 10
+    elif (year == "2000"):
+        index = 11
+    elif (year == "2010"):
+        index = 12
+
+    def sortSecond(val):
+        return val[1]
+
+    for key in nameList:
+        eachArray = nameList[key]
+        # print(eachArray)
+        if (eachArray[0] != '4513'):
+            if (eachArray[index] != '0'):
+                topTenArray.append([eachArray[0], eachArray[index]])
+    
+    topTenArray.sort(key=sortSecond, reverse=True)
+    print(topTenArray)
+
+
 
 
 if __name__ == '__main__':
