@@ -5,9 +5,10 @@
     Description: 
     Errors:
  */
-using namespace std;
+#pragma once
 #include <fstream>
 #include <string>
+using namespace std;
 
 
 class Grammar {
@@ -17,5 +18,6 @@ class Grammar {
 		void addProduction(string nonTerm, string rhs);
 		string getRandomRHS(string nonTerm);
 		bool containsNonTerminal(string nonTerm);
-		// void operator<<(Grammar sentence);
+		// bool operator<<(Grammar sentence);
+		friend ostream& operator<<(ostream& os, Grammar& v);
 };

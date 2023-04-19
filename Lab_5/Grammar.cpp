@@ -6,26 +6,28 @@
     Errors:
  */
 #include "Grammar.h"
+
 using std::ifstream;
 using std::string;
 using namespace std;
 
-	Grammar::Grammar(){
-		int a = 1;
+	Grammar::Grammar() {
+		// new Grammar();
+		int a = 10;
 	}
 
 	void Grammar::addProduction(string nonTerm, string rhs) {
-		
+		;
 	}
 
 	string Grammar::getRandomRHS(string nonTerm) {
-		return nonTerm;
+		;
 	}
 
 	bool containsNonTerminal(string nonTerm) {
-		return true;
+		;
 	}
 
-/* 	void Grammar::operator<<(Grammar sentence) {
-		
-	} */
+	ostream& operator<<(ostream& os, Grammar& v){
+		;
+	}

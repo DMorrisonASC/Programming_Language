@@ -5,6 +5,7 @@
     Description: 
     Errors:
  */
+#pragma once
 #include "Grammar.h"
 #include <iostream>
 using namespace std;
