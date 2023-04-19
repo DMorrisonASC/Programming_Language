@@ -6,6 +6,7 @@
     Errors:
  */
 #include <iostream>
+#include "RandomSentenceGenerator.h"
 using namespace std;
 
 int main() {
