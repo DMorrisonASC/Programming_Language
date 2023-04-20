@@ -14,7 +14,7 @@ int main() {
     cout << "Hello, world!\n";
 	string fileName = "Trump.g";
 	string * ptrName = &fileName;
-	// RandomSentenceGenerator sentenceGenerator = new RandomSentenceGenerator(fileName);
+	//
 	RandomSentenceGenerator sentenceGenerator(fileName);
     
 }

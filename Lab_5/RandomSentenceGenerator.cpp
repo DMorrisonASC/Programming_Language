@@ -28,10 +28,14 @@ using namespace std;
 		string line;
 		while (getline(file, line)) {
 			// Parse line here
-			cout << line << endl;
+			// cout << line << endl;
 		}
 
 		file.close();
+		
+	
+		
+		
 	}
 	
 	string RandomSentenceGenerator::randomSentence() {
@@ -41,5 +45,9 @@ using namespace std;
 	void printGrammar() {
 		;
 	}
+	
+	// Grammar getGrammar() {
+		// return grammarRule;
+	// }
 	// Destructor
 	

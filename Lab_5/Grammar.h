@@ -8,16 +8,20 @@
 #pragma once
 #include <fstream>
 #include <string>
+#include <map> 
+#include <vector>
 using namespace std;
 
 
 class Grammar {
 	public:
 		Grammar();
+		map <string, vector<string>> hashMap;
 		// ~Grammar();
 		void addProduction(string nonTerm, string rhs);
 		string getRandomRHS(string nonTerm);
 		bool containsNonTerminal(string nonTerm);
 		// bool operator<<(Grammar sentence);
 		friend ostream& operator<<(ostream& os, Grammar& v);
+		
 };

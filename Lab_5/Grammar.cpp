@@ -6,10 +6,14 @@
     Errors:
  */
 #include "Grammar.h"
+#include <map> 
+#include <vector>
 
 using std::ifstream;
 using std::string;
 using namespace std;
+
+	map <string, vector<string> > hashMap;
 
 	Grammar::Grammar() {
 		// new Grammar();

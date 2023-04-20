@@ -12,12 +12,13 @@ using namespace std;
 
 class RandomSentenceGenerator {
 	private:
-		Grammar grammerRule;
+		Grammar grammarRule;
 	public:
 		RandomSentenceGenerator();
 		RandomSentenceGenerator(const string & fileName);
 		string randomSentence();
-		void printGrammer();
+		void printGrammar();
+		// Grammar getGrammar();
 		// destructor
 };
 
