@@ -11,13 +11,27 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <fstream>
+
 using namespace std;
 
 	RandomSentenceGenerator::RandomSentenceGenerator() {
 		;
 	}	
 	RandomSentenceGenerator::RandomSentenceGenerator(const string & fileName) {
-		;
+		
+		ifstream file(fileName);
+		if (!file.is_open()) {
+			cerr << "File not available" << fileName << std::endl;
+		}
+
+		string line;
+		while (getline(file, line)) {
+			// Parse line here
+			cout << line << endl;
+		}
+
+		file.close();
 	}
 	
 	string RandomSentenceGenerator::randomSentence() {
