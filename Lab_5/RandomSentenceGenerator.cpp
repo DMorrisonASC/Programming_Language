@@ -57,13 +57,10 @@ using namespace std;
 				// If the line is part of a production.
 				else if (startOfProduction && !endOfProduction)
 				{
-					line = line.c_str();
-
-					// Remove whitespace from the non-terminal.
-					nonTerminal.erase(remove_if(nonTerminal.begin(), nonTerminal.end(), ::isspace), nonTerminal.end());
-
-					// Add the production to the grammar object.
-					grammarRule->addProduction(nonTerminal, line.substr(0, line.find(";")));
+					line = line.substr(0, line.find(";"));
+					// Remove Whitespace
+					nonTerminal.erase(std::remove_if(nonTerminal.begin(), nonTerminal.end(), ::isspace), nonTerminal.end());
+					grammarRule->addProduction(nonTerminal, line);
 					cout << line << "\n";
 				}
 			}
