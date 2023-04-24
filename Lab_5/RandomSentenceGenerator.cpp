@@ -46,7 +46,7 @@ using namespace std;
 					endOfProduction = false;
 					getline(inputFile, line);
 					nonTerminal = line.c_str();
-					cout << nonTerminal << "\n";
+					// cout << nonTerminal << "\n";
 				}
 				// Check if the line contains the end of a production.
 				else if (line.find("}") != std::string::npos)
@@ -61,7 +61,7 @@ using namespace std;
 					// Remove Whitespace
 					nonTerminal.erase(std::remove_if(nonTerminal.begin(), nonTerminal.end(), ::isspace), nonTerminal.end());
 					grammarRule->addProduction(nonTerminal, line);
-					cout << line << "\n";
+					// cout << line << "\n";
 				}
 			}
 
@@ -73,7 +73,25 @@ using namespace std;
 	
 	
 	string RandomSentenceGenerator::randomSentence() {
-		return "Up";
+		// Generate a random sentence from the grammar with "<start>" as the starting non-terminal symbol.
+		std::string randomSentence = grammarRule->getRandomRHS("<start>");
+
+		// While there are still non-terminal symbols in the sentence.
+		while (randomSentence.find("<") != std::string::npos)
+		{
+			// Get the non-terminal symbol to expand.
+			std::string nonTerminalSymbol = randomSentence.substr(randomSentence.find_first_of("<"), (randomSentence.find_first_of(">") - randomSentence.find_first_of("<")) + 1);
+			
+			// Get a random production rule for the non-terminal symbol and append it to the rest of the sentence.
+			std::string expandedGrammar = grammarRule->getRandomRHS(nonTerminalSymbol) + randomSentence.substr(randomSentence.find_first_of(">") + 1, randomSentence.size() - randomSentence.find_first_of(">"));
+			
+			// Replace the non-terminal symbol with the expanded grammar.
+			randomSentence.replace(randomSentence.find_first_of("<"), randomSentence.size(), expandedGrammar);
+		}
+
+		// Return the fully expanded sentence.
+		return randomSentence;
+
 	}
 	
 	void printGrammar() {
