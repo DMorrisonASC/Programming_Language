@@ -11,10 +11,12 @@
 using namespace std;
 
 int main() {
-    cout << "Hello, world!\n";
 	string fileName = "Trump.g";
 	string * ptrName = &fileName;
 	//
 	RandomSentenceGenerator sentenceGenerator(fileName);
+	string newMadeSent = sentenceGenerator.randomSentence();
+	cout << newMadeSent;
+	sentenceGenerator.printGrammar();
     
 }
