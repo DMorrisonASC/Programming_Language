@@ -17,6 +17,6 @@ int main() {
 	RandomSentenceGenerator sentenceGenerator(fileName);
 	string newMadeSent = sentenceGenerator.randomSentence();
 	cout << newMadeSent;
-	sentenceGenerator.printGrammar();
+	// sentenceGenerator.printGrammar();
     
 }

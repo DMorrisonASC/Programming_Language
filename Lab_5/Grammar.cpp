@@ -25,8 +25,21 @@ using namespace std;
 
 	void Grammar::addProduction(string nonTerm, string rhs) {
 		vector<string> vec; 
-		vec.push_back(rhs);
-		hashMap.insert(make_pair(nonTerm, vec));
+		
+		if (hashMap.find(nonTerm) != hashMap.end()) {
+			// vec = hashMap.at(nonTerm);
+			// vec.push_back(rhs);
+			hashMap.at(nonTerm).push_back(rhs);
+		}
+		
+		else {
+			vector<string> vec; 
+			vec.push_back(rhs);
+			hashMap.insert(make_pair(nonTerm, vec));
+		}
+		
+		
+		
 		
 	}
 

@@ -32,7 +32,7 @@ using namespace std;
 		inputFile.open(fileName.c_str());
 		if (inputFile.is_open())
 		{
-			std::string nonTerminal;
+			string nonTerminal;
 			bool startOfProduction = false;
 			bool endOfProduction = true;
 
@@ -45,7 +45,7 @@ using namespace std;
 					startOfProduction = true;
 					endOfProduction = false;
 					getline(inputFile, line);
-					nonTerminal = line.c_str();
+					nonTerminal = line;
 					// cout << nonTerminal << "\n";
 				}
 				// Check if the line contains the end of a production.
@@ -60,6 +60,7 @@ using namespace std;
 					line = line.substr(0, line.find(";"));
 					// Remove Whitespace
 					nonTerminal.erase(std::remove_if(nonTerminal.begin(), nonTerminal.end(), ::isspace), nonTerminal.end());
+					// cout << nonTerminal << "\n";
 					grammarRule->addProduction(nonTerminal, line);
 					// cout << line << "\n";
 				}
