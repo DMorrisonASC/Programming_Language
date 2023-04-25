@@ -8,6 +8,10 @@
 #include "Grammar.h"
 #include <map> 
 #include <vector>
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 using std::ifstream;
 using std::string;
@@ -16,22 +20,62 @@ using namespace std;
 	map <string, vector<string> > hashMap;
 
 	Grammar::Grammar() {
-		// new Grammar();
-		int a = 10;
+		string finalSentence = "";
 	}
 
 	void Grammar::addProduction(string nonTerm, string rhs) {
-		;
+		vector<string> vec; 
+		vec.push_back(rhs);
+		hashMap.insert(make_pair(nonTerm, vec));
+		
 	}
 
 	string Grammar::getRandomRHS(string nonTerm) {
-		;
+		
+		vector<string> options = hashMap.at(nonTerm);
+		int sizeOptions = options.size();
+		int randNum = (rand() % sizeOptions);
+		string randSentence = options.at(randNum);
+		
+		return randSentence;
 	}
 
 	bool containsNonTerminal(string nonTerm) {
-		;
+
+		istringstream iss(nonTerm);
+ 
+		// Iterate the istringstream
+		// using do-while loop
+		do {
+			string subs;
+	 
+			// Get the word from the istringstream
+			iss >> subs;
+			
+			if (subs.find("<") != string::npos && subs.find(">") != string::npos) {
+				// cout << "found! " << subs;
+				return true;
+			}
+			
+			else {
+				subs = "";
+			}
+			
+		} while (iss);
+	 
+		return false;
+		
 	}
 
-	ostream& operator<<(ostream& os, Grammar& v){
-		;
+	ostream& operator<<(ostream& os, Grammar& grammar){
+		// return the keys and values of the map(`hashMap`)
+        for (auto const& pair: grammar.hashMap) {
+            os << "Key: " << pair.first << "\n";
+            os << "Values: ";
+            for (auto const& val: pair.second) {
+                os << val << " ";
+            }
+            os << "\n\n";
+        }
+		return os;
 	}
