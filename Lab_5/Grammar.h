@@ -21,7 +21,7 @@ class Grammar {
 		void addProduction(string nonTerm, string rhs);
 		string getRandomRHS(string nonTerm);
 		bool containsNonTerminal(string nonTerm);
-		// bool operator<<(Grammar sentence);
 		friend ostream& operator<<(ostream& os, Grammar& v);
+		 
 		
 };
