@@ -95,7 +95,6 @@ using namespace std;
 	
 	void RandomSentenceGenerator::printGrammar() {
 		// Grammar * grammarObj = this->grammarRule; 
-		// cout << grammarObj;
 		cout << * this->grammarRule;
 	}
 	// Destructor

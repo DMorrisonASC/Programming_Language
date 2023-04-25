@@ -48,6 +48,7 @@ using namespace std;
 		vector<string> options = hashMap.at(nonTerm);
 		int sizeOptions = options.size();
 		int randNum = (rand() % sizeOptions);
+		cout << randNum << "\n Size";
 		string randSentence = options.at(randNum);
 		
 		return randSentence;
@@ -56,7 +57,6 @@ using namespace std;
 	bool containsNonTerminal(string nonTerm) {
 
 		istringstream iss(nonTerm);
- 
 		// Iterate the istringstream
 		// using do-while loop
 		do {
