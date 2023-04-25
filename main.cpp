@@ -1,20 +1,22 @@
 /*
     Author: Daeshaun Morrison, Muhlenberg College class of 2024(daeshaunkmorrison@gmail.com)
-    Date: 2/13/2023
+    Date: 3/21/2023
     Instructor: Professor Silveyra
     Description: 
-    Errors: 
+    Errors:
  */
+#include <iostream>
+#include "RandomSentenceGenerator.h"
 
-#include "Player.h"
-#include "Words.h"
-#include<iostream>
-#include<string>
+using namespace std;
 
- int main() {
-	
-	Words listOfWords;
-	
-	listOfWords.playGame();
-
- }
+int main() {
+	string fileName = "Trump.g";
+	string * ptrName = &fileName;
+	//
+	RandomSentenceGenerator sentenceGenerator(fileName);
+	string newMadeSent = sentenceGenerator.randomSentence();
+	cout << newMadeSent;
+	// sentenceGenerator.printGrammar();
+    
+}
