@@ -73,9 +73,10 @@ using namespace std;
             os << "Key: " << pair.first << "\n";
             os << "Values: ";
             for (auto const& val: pair.second) {
-                os << val << " ";
+                os << val << "\n";
             }
             os << "\n\n";
         }
 		return os;
 	}
+	

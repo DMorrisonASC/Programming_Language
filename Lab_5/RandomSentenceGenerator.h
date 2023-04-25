@@ -18,7 +18,7 @@ class RandomSentenceGenerator {
 		RandomSentenceGenerator(const string & fileName);
 		string randomSentence();
 		void printGrammar();
-		// Grammar getGrammar();
 		// destructor
+		~RandomSentenceGenerator();
 };
 

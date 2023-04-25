@@ -17,7 +17,6 @@ class Grammar {
 	public:
 		Grammar();
 		map <string, vector<string>> hashMap;
-		// ~Grammar();
 		void addProduction(string nonTerm, string rhs);
 		string getRandomRHS(string nonTerm);
 		bool containsNonTerminal(string nonTerm);

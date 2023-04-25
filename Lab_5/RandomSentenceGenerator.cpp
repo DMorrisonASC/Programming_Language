@@ -69,8 +69,6 @@ using namespace std;
 			inputFile.close();
 		}		
 	}
-
-	
 	
 	string RandomSentenceGenerator::randomSentence() {
 		// Generate a random sentence from the grammar with "<start>" as the starting non-terminal symbol.
@@ -94,12 +92,14 @@ using namespace std;
 
 	}
 	
-	void printGrammar() {
-		;
+	void RandomSentenceGenerator::printGrammar() {
+		// Grammar * grammarObj = this->grammarRule; 
+		// cout << grammarObj;
+		cout << * this->grammarRule;
 	}
-	
-	// Grammar getGrammar() {
-		// return grammarRule;
-	// }
 	// Destructor
+	RandomSentenceGenerator::~RandomSentenceGenerator()
+	{
+		delete grammarRule;
+	}
 	
